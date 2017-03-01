@@ -28,7 +28,7 @@ fileurl<-("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20
 download.file(fileurl,destfile="./data.zip")
 unzip("./data.zip")
 ```
-##check out files before reading to see format
+ ##check out files before reading to see format
 ##read tables in
 ```
 xtest<-read.table("./UCI HAR Dataset/test/X_test.txt")
@@ -62,7 +62,7 @@ test<-cbind(xtest,ytest,subtest)
 masterdata<-rbind(train,test)
 ```
 Extracts only the measurements on the mean and standard deviation for each measurement.
-Please note that I am excluding variable names that contain “meanFreq” as I interpreted the directions as only wanting the mean() and std() variables defined in the features_info.txt document.  
+Please note that I am excluding variable names that contain “meanFreq” as I interpreted the directions as only wanting the mean() and std() variables defined in the features_info.txt document, and excluded the signal window sample averages used in the angle variable.
 ```
 ##extract only mean and std dev activities
 
