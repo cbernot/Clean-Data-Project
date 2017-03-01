@@ -35,6 +35,7 @@ xtest<-read.table("./UCI HAR Dataset/test/X_test.txt")
 ytest<-read.table("./UCI HAR Dataset/test/y_test.txt")
 subtest<-read.table("./UCI HAR Dataset/test/subject_test.txt")
 xtrain<-read.table("./UCI HAR Dataset/train/X_train.txt")
+
 ytrain<-read.table("./UCI HAR Dataset/train/y_train.txt")
 subtrain<-read.table("./UCI HAR Dataset/train/subject_train.txt")
 actlabels<-read.table("./UCI HAR Dataset/activity_labels.txt")
@@ -61,6 +62,7 @@ test<-cbind(xtest,ytest,subtest)
 masterdata<-rbind(train,test)
 ```
 Extracts only the measurements on the mean and standard deviation for each measurement.
+Please note that I am excluding variable names that contain “meanFreq” as I interpreted the directions as only wanting the mean() and std() variables defined in the features_info.txt document.  
 ```
 ##extract only mean and std dev activities
 
