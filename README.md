@@ -63,8 +63,10 @@ masterdata<-rbind(train,test)
 Extracts only the measurements on the mean and standard deviation for each measurement.
 ```
 ##extract only mean and std dev activities
+
 subsetin<-grepl("std|mean|volunteer|activityid",names(masterdata))
 subsetdata<-masterdata[,subsetin==TRUE]
+subsetdata<-select(subsetdata,-contains("meanFreq"))
 ```
 Uses descriptive activity names to name the activities in the data set
 ```
@@ -73,7 +75,7 @@ subsetdata2<-merge(subsetdata,actlabels,by="activityid",all.x=TRUE)
 ```
 Appropriately labels the data set with descriptive variable names. 
 ```
-##creat descriptive names for variables
+##creat descriptive names for variables, eliminate duplicates
 ##need to take out punctuation
 subnames<-names(subsetdata2)
 subnames<-gsub("[()]","",subnames)
@@ -81,13 +83,15 @@ subnames<-gsub("-","_",subnames)
 subnames<-gsub("std","STD",subnames)
 subnames<-gsub("mean","MEAN",subnames)
 subnames<-gsub("BodyBody","Body",subnames)
+subnames<-gsub("^t","time",subnames)
+subnames<-gsub("^f","freq",subnames)
 colnames(subsetdata2)<-subnames
 ```
 From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 ```
 ##create a second data set that contains the average of each variable for each activity by each subject
 subgroup<-subsetdata2%>%group_by(volunteer,activityname)
-newdata<-summarise_each(subgroup,funs(mean),tBodyAcc_MEAN_X:fBodyGyroJerkMag_MEANFreq)
+newdata<-summarise_each(subgroup,funs(mean),timeBodyAcc_MEAN_X:freqBodyGyroJerkMag_STD)
 ##write newdata to a final tidydata csv file
 write.csv(newdata, file = "tidydata.csv")
 ```
