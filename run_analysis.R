@@ -1,4 +1,4 @@
-rm(list=ls())
+
 setwd("./gatherproject")
 library(dplyr)
 library(tidyr)
@@ -51,7 +51,7 @@ subgroup<-subsetdata2%>%group_by(volunteer,activityname)
 newdata<-summarise_each(subgroup,funs(mean),timeBodyAccMeanX:freqBodyGyroJerkMagStd)
 ##write newdata to a final tidydata csv file
 write.csv(newdata, file = "tidydata.csv")
-
+write.table(newdata, file="tidydata.txt",row.names=FALSE)
 
 
 
