@@ -25,8 +25,7 @@ This code will require two libraries: dplyr, tidyr:
 library(dplyr)
 library(tidyr)
 fileurl<-("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip")
-download.file(fileurl,destfile="./data.zip")
-unzip("./data.zip")
+download.file(fileurl,destfile="./data.zip")unzip("./data.zip")
 ```
  ##check out files before reading to see format
 ##read tables in
@@ -84,7 +83,7 @@ subnames<-gsub("[()]","",subnames)
 subnames<-gsub("-","",subnames)
 subnames<-gsub("BodyBody","Body",subnames)
 subnames<-gsub("mean","Mean",subnames)
-subnames<-gsub("std","STD",subnames)
+subnames<-gsub("std","Std",subnames)
 subnames<-gsub("^t","time",subnames)
 subnames<-gsub("^f","freq",subnames)
 colnames(subsetdata2)<-subnames
