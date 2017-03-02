@@ -92,7 +92,7 @@ From the data set in step 4, creates a second, independent tidy data set with th
 ```
 ##create a second data set that contains the average of each variable for each activity by each subject
 subgroup<-subsetdata2%>%group_by(volunteer,activityname)
-newdata<-summarise_each(subgroup,funs(mean),timeBodyAccMeanX:freqBodyGyroJerkMagSTD)
+newdata<-summarise_each(subgroup,funs(mean),timeBodyAccMeanX:freqBodyGyroJerkMagStd)
 ##write newdata to a final tidydata csv file
 write.csv(newdata, file = "tidydata.csv")
 
