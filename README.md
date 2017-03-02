@@ -49,6 +49,7 @@ colnames(ytest)<-"activityid"
 colnames(subtest)<-"volunteer"
 colnames(subtrain)<-"volunteer"
 colnames(actlabels)<-c("activityid","activityname")
+
 ```
 
 
@@ -95,6 +96,6 @@ subgroup<-subsetdata2%>%group_by(volunteer,activityname)
 newdata<-summarise_each(subgroup,funs(mean),timeBodyAccMeanX:freqBodyGyroJerkMagStd)
 ##write newdata to a final tidydata csv file
 write.csv(newdata, file = "tidydata.csv")
-
+write.table(newdata, file="tidydata.txt",row.names=FALSE)
 ```
 
